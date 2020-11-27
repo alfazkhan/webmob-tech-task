@@ -60,7 +60,7 @@ export class List extends Component {
                 {this.state.show
                     ?
                     <div>
-                        <h2 style={{ margin: 20 }} className="text-success">Purchased Services</h2>
+                        <h2 style={{ margin: 20 }} className="text-success"><u>Purchased Services</u></h2>
                         {this.state.mainServices.map(service => {
                             return (
                                 <div style={{margin:20}}>
@@ -93,11 +93,14 @@ export class List extends Component {
                             </div>
                         </div>
 
-                        <h2 style={{ margin: 20 }} className="text-success">Additional Services</h2>
+                        <h2 style={{ margin: 20 }} className="text-success"><u>Additional Services</u></h2>
                         {this.state.additionalServices.map((service,index) => {
+                            const MainHeading = this.state.additionalServices[index].Main
+                            const previousHeading =  index === 0 ? "123" : this.state.additionalServices[index - 1].Main
+                            console.log(MainHeading === previousHeading)
                             return (
                                 <div style={{ margin: 20 }}>
-                                    <h4 className="text-left">{service.Main}</h4>
+                                <h4 className="text-left">{MainHeading === previousHeading ?null:MainHeading}</h4>
                                     <div className="card">
                                         <div className="card-body">
                                             <img src={service.image} style={{ height: 100, width: 100 }} />
